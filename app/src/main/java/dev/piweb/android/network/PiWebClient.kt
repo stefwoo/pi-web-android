@@ -55,7 +55,8 @@ class PiWebClient(
     // ==================== Session Management ====================
 
     fun listSessions(machineId: String = "local", callback: (List<SessionInfo>?, Exception?) -> Unit) {
-        val request = newRequestBuilder("api/machines/$machineId/sessions").build()
+        // Always include cwd query param; default to root if not set elsewhere.
+        val request = newRequestBuilder("api/machines/$machineId/sessions${encodeCwd(null)}").build()
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) = callback(null, e)
             override fun onResponse(call: Call, response: Response) {
