@@ -46,7 +46,10 @@ class PiWebClient(
     }
 
     private fun encodeCwd(cwd: String?): String {
-        return if (!cwd.isNullOrBlank()) "?cwd=${URLEncoder.encode(cwd, "UTF-8")}" else ""
+        // pi-web server requires cwd query parameter for all session endpoints.
+        // If not provided by caller, default to root "/" to avoid 400 error.
+        val effectiveCwd = cwd ?: "/"
+        return "?cwd=${URLEncoder.encode(effectiveCwd, "UTF-8")}"
     }
 
     // ==================== Session Management ====================
