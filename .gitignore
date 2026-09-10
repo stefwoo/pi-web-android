@@ -1,0 +1,30 @@
+# Built application files
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Build dirs
+build/
+*/build/
+
+# Gradle
+.gradle/
+local.properties
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.DS_Store
+
+# Kotlin
+*.kotlin_module
+
+# Log files
+*.log
+
+# Keystore (never commit)
+*.jks
+*.keystore
